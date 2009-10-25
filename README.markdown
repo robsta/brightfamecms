@@ -1,8 +1,8 @@
 Brightfame
 ==========
 
-Brightfame is a content-management system written in PHP built on top of the
-Zend Framework.
+Brightfame is a content-management system written in PHP and built on top of
+the Zend Framework.
 
 Installation
 ------------
