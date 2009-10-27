@@ -17,7 +17,7 @@ Class PageController extends Brightfame_Controller_Action
         {
                 $this->_redirect('/index', 'Page not Found');
         }
-        $myrole = isset($this->user->role)?$this->user->role:'Guests';
+        $myrole = isset($this->user->role)?$this->user->role:'Guest';
         $role = $page['role'];
         $this->_setAccess($role,"page:{$page['id']}");
         if( $this->_isAllowed($myrole,"page:{$page['id']}") < 1)

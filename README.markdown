@@ -13,3 +13,4 @@ Installation
  * Log files is located in /path/to/brightfame/log you might need to chmod 
    this directory (777).
  * Edit the file /path/to/brightfame/app/config/application.ini
+ * 

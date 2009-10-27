@@ -1,29 +1,22 @@
 <?php
 
-class IndexController extends Brightfame_Controller_Action
+class IndexController extends Zend_Controller_Action
 {
-    public function init()
-    {
-        parent::init();
-    }
-        
+    public $page;
+    
     public function indexAction()
     {
-        $pages_model = new Page();
-        $pages = $pages_model->getFrontpage();
-        $myrole = isset($this->user->role)?$this->user->role:'Guests';
-        $x = 0;
-        foreach ($pages as $page) {
-            $role = $page['role'];
-            $this->_setAccess($role,"page:{$page['id']}");
-                
-            if ($this->_isAllowed($myrole,"page:{$page['id']}") > 0) {
-                $this->view->page = $page;
-                $x++;
-            }
-            if ($x == 1) {
-                return;
-            }
-        }
+        // create the new page object
+        $this->page = Brightfame_Builder::loadPage(null, 'initialize.xml');
+        
+        // load the data
+        Brightfame_Builder::loadPage(null, 'load_data.xml', $this->page);
+
+        // load the view
+        Brightfame_Builder::loadPage(null, 'load_view.xml', $this->page, $this->view);
+        
+        // render the page
+        $this->view->page = $this->page;
+        $this->view->layout()->page = $this->page->getParam('xhtml');
     }
 }
